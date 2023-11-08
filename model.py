@@ -2,6 +2,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 import os
 import logging
+import shutil
 
 class CodeGenerator:
     def __init__(self, model=None):
@@ -12,9 +13,36 @@ class CodeGenerator:
         # 确定基础路径和使用的模型
         # 获取当前脚本所在的绝对路径
         script_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        
+        if False:
+            # 启用缓存盘 autodl 专用，可以启动
+            script_models = os.path.join(script_dir, 'models')
+            # 如果script_models中的内容不在models_dir中的话，那么将models中的内容，复制到/root/autodl-tmp/models中，文件重复的话跳过
 
-        # 使用os.path.join来构建models目录的路径
-        base_path = os.path.join(script_dir, 'models')
+            models_dir = "/root/autodl-tmp/"
+
+            # 使用os.path.join来构建models目录的路径
+            base_path = os.path.join(models_dir, 'models')
+            
+
+            # 检查目标目录是否存在
+            if not os.path.exists(base_path):
+                print(script_models, base_path)
+                # 目标目录不存在，执行复制
+                shutil.copytree(script_models, base_path)
+                print(f"Copied models to {base_path}")
+            else:
+                # 目标目录已存在
+                print(f"Models directory already exists at {base_path}")
+            
+        else:
+            
+            # 使用os.path.join来构建models目录的路径
+            base_path = os.path.join(script_dir, 'models')
+            print(base_path)
+        
+        
         model_name = model if model is not None else os.getenv('MODEL_NAME', 'Salesforce/codegen-2B-mono')
 
         self.logger.info(f"正在加载模型: {model_name}")
