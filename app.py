@@ -49,8 +49,8 @@ def predict():
     try:
         data = request.get_json(force=True)
         text = data.get('text')
-        max_length = int(data.get('max_length'))
-        model_name = data.get('model', 'default-model')
+        max_length = int(data.get('max_length', 50))
+        model_name = data.get('model', 'Salesforce/codegen-350M-mono')
 
         # 通过缓存管理类获取模型
         generator = model_cache.get(model_name)

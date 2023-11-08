@@ -46,6 +46,21 @@ class CodeGenerator:
             else:
                 raise e
 
-# 使用示例
-# generator = CodeGenerator()
-# prediction = generator.predict("快速的棕色狐狸", max_length=50)
+if __name__ == '__main__':
+
+    code = """
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+        mid_val = arr[mid]
+
+        if mid_val == target:
+            return mid  # 返回目标值的索引
+        elif mid_val < target:
+    """
+    # 使用示例
+    generator = CodeGenerator(model='Salesforce/codegen-350M-mono')
+    prediction = generator.predict(code, max_length=50)
+    print("补全结果:\n", prediction)
