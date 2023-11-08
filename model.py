@@ -10,7 +10,11 @@ class CodeGenerator:
         self.logger = logging.getLogger(__name__)
 
         # 确定基础路径和使用的模型
-        base_path = os.getenv('MODEL_BASE_PATH', './models')
+        # 获取当前脚本所在的绝对路径
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # 使用os.path.join来构建models目录的路径
+        base_path = os.path.join(script_dir, 'models')
         model_name = model if model is not None else os.getenv('MODEL_NAME', 'Salesforce/codegen-2B-mono')
 
         self.logger.info(f"正在加载模型: {model_name}")
