@@ -55,6 +55,9 @@ curl --location 'http://127.0.0.1:5000/predict' \
 您将收到包含预测内容的 JSON 响应。
 
 ## 模型列表
+模型存放的位置
+
+![](https://raw.githubusercontent.com/glwhappen/images/main/img/202312041543561.png)
 
 > 为了方便使用，可以直接从我提供的百度网盘下载
 链接：https://pan.baidu.com/s/1KFUlXBqzQfZtmGLq6QUKIw?pwd=6666 
