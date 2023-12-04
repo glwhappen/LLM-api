@@ -55,9 +55,8 @@ curl --location 'http://127.0.0.1:5000/predict' \
 您将收到包含预测内容的 JSON 响应。
 
 ## 模型列表
-模型存放的位置
 
-![](https://raw.githubusercontent.com/glwhappen/images/main/img/202312041543561.png)
+为了移动模型方便，我把相同的模型的 config 和 models 放到了一起
 
 > 为了方便使用，可以直接从我提供的百度网盘下载
 链接：https://pan.baidu.com/s/1KFUlXBqzQfZtmGLq6QUKIw?pwd=6666 
@@ -66,6 +65,11 @@ curl --location 'http://127.0.0.1:5000/predict' \
 - Salesforce/codegen-350M-mono
 - Salesforce/codegen-2B-mono
 - Salesforce/codegen-16B-mono
+
+模型存放的位置
+
+![](https://raw.githubusercontent.com/glwhappen/images/main/img/202312041543561.png)
+
 
 ## 模型缓存和删除策略
 
