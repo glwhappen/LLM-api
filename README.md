@@ -1,7 +1,9 @@
-# 大语言模型代码生成 API
+# 快速部署大语言模型
 
 ## 简介
-这个 API 提供了一个接口，可以访问多种大型语言模型进行代码生成。它使用 Flask 构建，并可以根据 API 请求中指定的模型动态加载。此外，API 实现了一个简单的模型缓存机制，每次只保留最近使用的两个模型实例。
+这个项目可以快速部署 huggingface上 的模型，并提供一个 API 接口，可以访问多种大型语言模型进行代码生成。它使用 Flask 构建，并可以根据 API 请求中指定的模型动态加载。此外，API 实现了一个简单的模型缓存机制，每次只保留最近使用的两个模型实例。
+
+目前只针对代码生成的模型做了接口，其他的模型可能还需要稍微修改代码，这个项目旨在提供一个思路。
 
 ## 前提条件
 - Python 3.x
@@ -21,7 +23,11 @@ cd code-generator-api
 
 安装依赖项：
 ```bash
-pip install -r requirements.txt
+Flask==2.2.5
+torch==1.13.0+cu117
+transformers==4.27.0.dev0
+
+得根据自己的实际环境来
 ```
 
 ## 运行 API
@@ -30,16 +36,20 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
-在 `http://0.0.0.0:8088` 访问 API。
+在 `http://127.0.0.1:5000` 访问 API。
 
 ## 使用方法
 
 要生成代码，请发送包含 `text`、`max_length` 和可选的 `model` 字段的 JSON 数据到 `/predict` 的 POST 请求：
 
 ```bash
-curl -X POST http://0.0.0.0:8088/predict \
--H "Content-Type: application/json" \
--d '{"text": "您的提示文本", "max_length": 50, "model": "模型名称"}'
+curl --location 'http://127.0.0.1:5000/predict' \
+--header 'Content-Type: application/json' \
+--data '{
+    "text": "print(",
+    "max_length": 50,
+    "model": "Salesforce/codegen-350M-mono"
+}'
 ```
 
 您将收到包含预测内容的 JSON 响应。
