@@ -56,7 +56,7 @@ curl --location 'http://127.0.0.1:5000/predict' \
 
 ## 模型列表
 
-为了移动模型方便，我把相同的模型的 config 和 models 放到了一起
+为了移动模型方便，我把相同的模型的 config 和 models 放到了一起，在网络比较好的情况下，会自动的进行模型的下载，如果网络不好，可以在其他地方下载好以后，用百度网盘或者其他工具上传一下
 
 > 为了方便使用，可以直接从我提供的百度网盘下载
 链接：https://pan.baidu.com/s/1KFUlXBqzQfZtmGLq6QUKIw?pwd=6666 
